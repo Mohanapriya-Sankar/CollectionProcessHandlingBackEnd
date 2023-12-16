@@ -26,7 +26,7 @@ public class EmailScheduler {
         this.emailService = emailService;
 
     }
-    @Scheduled(cron = "0 38 00 * * ?") // This schedules the task to run every day at midnight
+    @Scheduled(cron = "0 17 14 * * ?") // This schedules the task to run every day at midnight
     public void sendDueDateReminders() {
     	System.out.println("Today");
 
@@ -48,7 +48,7 @@ public class EmailScheduler {
         }
 
     }
-    @Scheduled(cron = "0 57 00 * * ?")
+    @Scheduled(cron = "0 16 14 * * ?")
     public void remainders()
     {
     	System.out.println("Yesterday");
@@ -71,7 +71,7 @@ public class EmailScheduler {
         }
     	
     }
-    @Scheduled(cron = "0 58 00 * * ?")
+    @Scheduled(cron = "0 17 14 * * ?")
     public void remainders1()
     {
     	System.out.println("3 Days ago");

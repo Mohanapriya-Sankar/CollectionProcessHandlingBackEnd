@@ -60,6 +60,26 @@ System.out.println(mobile);
        
   }
 	@CrossOrigin(origins="http://localhost:4200")
+    @PostMapping("/mobile")
+    @ResponseBody
+    public ResponseEntity<Customer> mobile(@RequestBody Map<String, String> credentials) {
+        String mobile = credentials.get("phoneNumber");
+       Customer  ad = adrepo.findByMobile(mobile);
+System.out.println(ad);
+System.out.println(credentials +"of mobile number");
+System.out.println(mobile);
+//System.out.println(ad.getBalance());
+        if (ad == null || !mobile.equals(ad.getMobile())) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        // User is authenticated
+        // You can generate a JWT token or create a session here
+        return ResponseEntity.ok(ad);
+        // ok().body("{\"message\": \"Authentication successful\"}");
+       
+  }
+	
+	@CrossOrigin(origins="http://localhost:4200")
     @PostMapping("/paydet")
     @ResponseBody
     public ResponseEntity<Optional<Support>> paydet(@RequestBody String credentials) {
@@ -112,6 +132,7 @@ System.out.println(mobile);
     public ResponseEntity<Customer> update(@RequestBody Customer credentials) {
 		Customer ad=credentials;
         adrepo.save(ad);
+        System.out.println("Payment Update"+ad);
         return ResponseEntity.ok(ad);
         // ok().body("{\"message\": \"Authentication successful\"}");
        
